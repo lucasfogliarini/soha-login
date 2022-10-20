@@ -1,1 +1,22 @@
-<p>login works!</p>
+<mat-card>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+    <div>
+        <p>
+            <mat-form-field>
+            <input [(ngModel)]="account.email" type="email" matInput placeholder="E-mail (obrigatório)">
+            </mat-form-field>
+        </p>
+
+        <p>
+            <mat-form-field>
+            <input  [(ngModel)]="account.password" [maxLength]="15" type="password" matInput placeholder="Senha (obrigatório)">
+            </mat-form-field>
+        </p>
+
+        <div class="button">
+            <button [disabled]="!account.hasValues()" (click)="authenticate()" type="button" mat-raised-button>Logar</button>
+        </div>
+    </div>
+    </mat-card-content>
+</mat-card>
