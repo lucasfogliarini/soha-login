@@ -28,7 +28,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatInputModule,
     MatButtonModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      progressBar: true,
+      positionClass: 'toast-top-center'
+    }),
     RouterModule.forRoot([
       { path: 'login',  component: LoginComponent }
     ]),
