@@ -12,13 +12,14 @@ export class SohaLoginApiService {
     constructor(private http: HttpClient, 
                 private toastr: ToastrService) {}
 
-    post<T>(resource: string, body: T, next: (value: T) => void, error?: (err: any) => void){
+    post<TIn,TOut>(resource: string, body: TIn, next: (value: TOut) => void, error?: (err: any) => void){
         var uri = `${this.baseUrl}${resource}`;
-        var observable = this.http.post<T>(uri, body);
+        var observable = this.http.post<TOut>(uri, body);
         this.request(observable, next, error);
     }
 
     request<T>(observable: Observable<T>, next: ((value: T) => void), error?: (err: any) => void){      
+        this.toastr.info('Processando');
         let defaultError = (errorResponse: HttpErrorResponse) => {
             this.toastr.error(errorResponse.error.detail);
         };
