@@ -28,7 +28,10 @@ export class SohaLoginApiService {
                 this.toastr.error(errorResponse.error.detail);
         };
         observable.subscribe({ 
-            next: next,
+            next: (value: T)=>{
+                this.toastr.clear();
+                next(value);
+            },
             error: error || defaultError
         });
     }

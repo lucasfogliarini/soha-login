@@ -13,11 +13,13 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,9 @@ import { HttpClientModule } from '@angular/common/http';
       positionClass: 'toast-top-center'
     }),
     RouterModule.forRoot([
-      { path: 'login',  component: LoginComponent }
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login',  component: LoginComponent },
+      { path: 'home',  component: HomeComponent }
     ]),
   ],
   providers: [],
