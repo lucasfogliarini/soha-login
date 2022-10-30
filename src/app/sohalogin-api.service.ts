@@ -21,7 +21,10 @@ export class SohaLoginApiService {
     request<T>(observable: Observable<T>, next: ((value: T) => void), error?: (err: any) => void){      
         this.toastr.info('Processando');
         let defaultError = (errorResponse: HttpErrorResponse) => {
-            this.toastr.error(errorResponse.error.detail);
+            if(errorResponse.status == 0)
+                this.toastr.error(`API está inacessível (${errorResponse.url})`);//CA10 - Deve haver tratamento de erro e apresentação de mensagem ao usuário caso a API esteja inacessível ou a usuário/senha sejam inválidos.
+            else
+                this.toastr.error(errorResponse.error.detail);
         };
         observable.subscribe({ 
             next: next,
